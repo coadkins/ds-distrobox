@@ -23,6 +23,8 @@ wget $QUARTO_DL_URL -O /tmp/quarto.tar.gz && \
 tar -C /etc -xvzf /tmp/quarto.tar.gz && \
 EXECUTABLE_PATH=$(find /etc -type d -maxdepth 1 -name "quarto-*") && \
 ln -s $EXECUTABLE_PATH/bin/quarto /usr/bin/quarto
+# add TeX
+RUN quarto install tinytex --update-path
 
 # configure sshd for local access
 RUN dnf install -y openssh-server
