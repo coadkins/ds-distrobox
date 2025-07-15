@@ -1,4 +1,4 @@
-name: build-boxkit
+name: build container image 
 on:
   workflow_dispatch: # allow manually triggering builds
   pull_request:
@@ -28,7 +28,7 @@ jobs:
       fail-fast: false
       matrix:
         containerfile: 
-          - boxkit
+          - ds-distrobox 
        #- fedora-example # Included as an example to demonstrate multi-image builds, uncomment to build the fedora-example container too
     steps:
       # Clone code to runner
@@ -43,7 +43,8 @@ jobs:
           images: |
             ${{ matrix.containerfile }}
           labels: |
-            io.artifacthub.package.readme-url=https://raw.githubusercontent.com/ublue-os/boxkit/main/README.md
+            latest
+             
 
       # Build image using Buildah action
       - name: Build Image
@@ -85,7 +86,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ github.token }}
             
       # Sign container
       - name: Install cosign

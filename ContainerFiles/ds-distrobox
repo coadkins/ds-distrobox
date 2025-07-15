@@ -1,0 +1,25 @@
+FROM quay.io/fedora/fedora-toolbox:latest
+# install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+LABEL com.github.containers.toolbox="true" \
+      usage="This image is meant to be used with the toolbox or distrobox command" \
+      summary="An example ContainerFile to demonstrate multiple image builds." \
+      maintainer="adkins.cory@gmail.com"
+
+# Install rig 
+RUN dnf install -y https://github.com/r-lib/rig/releases/download/latest/r-rig-latest-1.$(arch).rpm
+# Install last 4 R versions
+RUN rig add release  && \
+    rig add oldrel/1 && \
+    rig add oldrel/2  && \
+    rig add oldrel/3  && \
+    rig default release && \
+    rm -rf /tmp/rig
+
+# configure sshd for local access
+RUN dnf install -y openssh-server
+RUN printf "Port 2222\nListenAddress localhost\nPermitEmptyPasswords yes\n" >> /etc/ssh/sshd_config \
+	&& /usr/libexec/openssh/sshd-keygen rsa \
+	&& /usr/libexec/openssh/sshd-keygen ecdsa \
+	&& /usr/libexec/openssh/sshd-keygen ed25519
