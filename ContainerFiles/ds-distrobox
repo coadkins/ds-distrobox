@@ -26,7 +26,7 @@ RUN quarto install tinytex --update-path
 
 # Install other misc packages
 ## libglpk-devel is an igraph/targets dependency that pak() seems to miss
-RUN dnf install -y libglpk-devel
+RUN dnf install -y glpk-devel
 
 # configure sshd for local access
 RUN dnf install -y openssh-server
