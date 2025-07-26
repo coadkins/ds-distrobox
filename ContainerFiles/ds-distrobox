@@ -1,4 +1,5 @@
-FROM quay.io/fedora/fedora-toolbox:latest
+# REHL9 as Base Image
+FROM registry.redhat.io/ubi9/toolbox:latest
 # install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
