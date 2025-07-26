@@ -24,6 +24,10 @@ ln -s $EXECUTABLE_PATH/bin/quarto /usr/local/bin/quarto
 # add TeX
 RUN quarto install tinytex --update-path
 
+# Install other misc packages
+## libglpk-devel is an igraph/targets dependency that pak() seems to miss
+RUN dnf install -y libglpk-devel
+
 # configure sshd for local access
 RUN dnf install -y openssh-server
 RUN printf "Port 2222\nListenAddress localhost\nPermitEmptyPasswords yes\n" >> /etc/ssh/sshd_config \
