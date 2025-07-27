@@ -1,5 +1,5 @@
 # Almalinux as Base Image
-FROM quay.io/toolbx-images/almalinux-toolbox:9
+FROM registry.redhat.io/ubi9/toolbox:latest
 # install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
