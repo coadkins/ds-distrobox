@@ -17,7 +17,7 @@ env:
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
 jobs:
-  push-ghcr:REHL
+  push-ghcr:
     name: Build and push image
     runs-on: ubuntu-24.04
     permissions:
@@ -28,7 +28,7 @@ jobs:
       fail-fast: false
       matrix:
         containerfile: 
-          - ds-distrobox 
+          - ds-distrobox
        #- fedora-example # Included as an example to demonstrate multi-image builds, uncomment to build the fedora-example container too
     steps:
       # Clone code to runner
@@ -46,7 +46,7 @@ jobs:
             latest
       # log into redhat for REHL9 Toolbox
       - name: log in to image registery
-        uses: redhat-actions/podman-login@v3
+        uses: redhat-actions/podman-login@v1
         with:
           username: ${{ secrets.REDHAT_USER }}
           password: ${{ secrets.REDHAT_PASSWORD }}
