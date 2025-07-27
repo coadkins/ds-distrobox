@@ -1,5 +1,5 @@
 # Almalinux as Base Image
-FROM registry.redhat.io/ubi9/toolbox:latest
+FROM quay.io/fedora/fedora-toolbox:41
 # install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
