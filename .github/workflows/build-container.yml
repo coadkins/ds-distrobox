@@ -46,7 +46,7 @@ jobs:
             latest
       # log into redhat for REHL9 Toolbox
       - name: log in to image registery
-        uses: redhat-actions/podman-login@v3
+        uses: redhat-actions/podman-login@v1
         with:
           username: ${{ secrets.REDHAT_USER }}
           password: ${{ secrets.REDHAT_PASSWORD }}
