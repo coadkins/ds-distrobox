@@ -44,13 +44,6 @@ jobs:
             ${{ matrix.containerfile }}
           labels: |
             latest
-      # log into redhat for REHL9 Toolbox
-      - name: log in to image registery
-        uses: redhat-actions/podman-login@v1
-        with:
-          username: ${{ secrets.REDHAT_USER }}
-          password: ${{ secrets.REDHAT_PASSWORD }}
-          registry: registry.redhat.io
 
       # Build image using Buildah action
       - name: Build Image

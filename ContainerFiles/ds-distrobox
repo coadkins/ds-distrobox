@@ -1,11 +1,11 @@
 # Fedora Toolbox as Base Image
-FROM quay.io/fedora/fedora-toolbox:latest
+FROM quay.io/toolbx-images/almalinux-toolbox:9
 # install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 LABEL com.github.containers.toolbox="true" \
       usage="This image is meant to be used with the toolbox or distrobox command" \
-      summary="An example ContainerFile to demonstrate multiple image builds." \
+      summary="A containerfile to facilitate R and Python data workflows" \
       maintainer="adkins.cory@gmail.com"
 
 # Install rig 
