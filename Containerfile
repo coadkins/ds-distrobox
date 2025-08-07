@@ -15,6 +15,8 @@ RUN rig add release  && \
    rig default release && \
     rm -rf /tmp/rig
 
+# Install rstudio-server
+
 # Install quarto
 RUN QUARTO_DL_URL=$(wget -qO- https://quarto.org/docs/download/_download.json | grep -oP "(?<=\"download_url\":\s\")https.*linux-amd64\.tar.gz") && \
 wget $QUARTO_DL_URL -O /tmp/quarto.tar.gz && \
