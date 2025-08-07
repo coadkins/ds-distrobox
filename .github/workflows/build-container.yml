@@ -14,8 +14,8 @@ on:
 
 env:
     IMAGE_NAME: "${{ github.event.repository.name }}"
-    DEFAULT_TAG: main
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+    DEFAULT_TAG: main
 
 jobs:
   push-ghcr:
@@ -65,7 +65,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           
       # Push the image to GHCR (Image Registry)
       - name: Push To GHCR
