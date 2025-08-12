@@ -8,3 +8,4 @@ dnf install -y git
 dnf copr enable dejan/lazygit
 dnf install -y lazygit
 dnf copr disable dejan/lazygit
+

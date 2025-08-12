@@ -15,8 +15,6 @@ RUN rig add release  && \
    rig default release && \
     rm -rf /tmp/rig
 
-# Install rstudio-server
-
 # Install quarto
 RUN QUARTO_DL_URL=$(wget -qO- https://quarto.org/docs/download/_download.json | grep -oP "(?<=\"download_url\":\s\")https.*linux-amd64\.tar.gz") && \
 wget $QUARTO_DL_URL -O /tmp/quarto.tar.gz && \
@@ -32,6 +30,10 @@ RUN dnf install -y glpk-devel \
     libxml2-devel \
     pandoc \
     cmake
+
+# Install misc cli utilities
+COPY scripts /scripts
+RUN /scripts/install_git.sh
 
 # configure sshd for local access
 RUN dnf install -y openssh-server
